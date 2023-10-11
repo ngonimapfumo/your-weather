@@ -1,0 +1,18 @@
+package com.nm.yourweather.data.remote.service
+
+import com.nm.yourweather.data.remote.request.GetCurrentRequest
+import com.nm.yourweather.data.remote.response.GetCurrentResponse
+import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+interface ApiService {
+
+    @GET("weather")
+    suspend fun getCurrentWeather(
+        @Query("lat") lat: String,
+        @Query("lon") lon: String
+    ): Response<GetCurrentResponse>
+}
