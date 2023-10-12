@@ -14,7 +14,7 @@ import com.nm.yourweather.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    lateinit var mainViewModel: MainViewModel
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         val location = fusedLocationClient.lastLocation
-        location.addOnSuccessListener { location1: Location? ->
-
-            mainViewModel.getCurrent( location1!!.latitude.toString(),location1.longitude.toString())
-            mainViewModel.getCurrent.observe(this){
-                Toast.makeText(this, it.body.main.feelsLike.toString(), Toast.LENGTH_SHORT).show()
-            }
-
-
+        location.addOnSuccessListener { loc: Location? ->
 
 
         }.addOnFailureListener {
